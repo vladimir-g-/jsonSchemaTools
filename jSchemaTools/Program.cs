@@ -164,10 +164,6 @@ namespace jsonSchemaTools
             Console.WriteLine("JSON schema comparator. Compares only structures of two json files.\n");
             Console.WriteLine("Use: [exe name] [file1 path] [file2 path]");
 
-           // Console.WriteLine("\nStructure of row with different elements:\n[name of JSON object inside file1] ==> [file1 element name] : [type of element] <> [file2 element name] : [type of element]");
-
-            //Console.Write("[missed element] - means that in this file there is no elemet or object with such name");
-
             return;
         }
     }
