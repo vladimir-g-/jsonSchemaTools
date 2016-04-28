@@ -9,8 +9,6 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Schema;
 
-//using jsonSchemaTools;
-
 namespace jsonSchemaTools
 {
     class Program
