@@ -1,2 +1,2 @@
 # jsonSchemaTools
-Compare schemas of tow json files
+Compare schemas of two json files
