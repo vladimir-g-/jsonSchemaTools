@@ -22,47 +22,52 @@ namespace jsonSchemaTools
             {
                 sPath1 = args[0];
                 sPath2 = args[1];
+
+                ExecuteSchemasComparison(sPath1, sPath2);
             }
             else
             {
                 ShowAboutInfo();
                 return;
             }
+        }
 
-            if (!File.Exists(sPath1))
+        private static void ExecuteSchemasComparison(string fileNameLeft, string fileNameRight)
+        {
+            if (!File.Exists(fileNameLeft))
             {
-                Console.WriteLine("File '{0}' not found!", sPath1);
+                Console.WriteLine("File '{0}' not found!", fileNameLeft);
                 return;
             }
 
-            if (!File.Exists(sPath2))
+            if (!File.Exists(fileNameRight))
             {
-                Console.WriteLine("File '{0}' not found!", sPath2);
+                Console.WriteLine("File '{0}' not found!", fileNameRight);
                 return;
             }
-            
-            JSONSchemaExtractor extractor = new JSONSchemaExtractor(); 
+
+            JSONSchemaExtractor extractor = new JSONSchemaExtractor();
             JSchema schemaLeft, schemaRight;
             List<CompareResultItem> compareResults;
 
             try
             {
-                schemaLeft = extractor.GetSchemaAsObject(sPath1);
+                schemaLeft = extractor.GetSchemaAsObject(fileNameLeft);
             }
             catch (Exception e)
             {
-                Console.WriteLine("Exception during schema extraction for the file: {0}", sPath1);
+                Console.WriteLine("Exception during schema extraction for the file: {0}", fileNameLeft);
                 Console.WriteLine(e.Message);
                 return;
             }
 
             try
             {
-                schemaRight = extractor.GetSchemaAsObject(sPath2);
+                schemaRight = extractor.GetSchemaAsObject(fileNameRight);
             }
             catch (Exception e)
             {
-                Console.WriteLine("Exception during schema extraction for the file: {0}", sPath2);
+                Console.WriteLine("Exception during schema extraction for the file: {0}", fileNameRight);
                 Console.WriteLine(e.Message);
                 return;
             }
@@ -87,13 +92,11 @@ namespace jsonSchemaTools
             {
                 // Compare results output
                 ShowCompareResults(compareResults);
-                
-                Console.WriteLine("\nPress any key to exit ...");
-                Console.ReadKey();
+
+                //Console.WriteLine("\nPress any key to exit ...");
+                //Console.ReadKey();
             }
-
         }
-
          private static void ShowCompareResults(List<CompareResultItem> resultsList)
         {
             ConsoleColor currentForegroundColor = Console.ForegroundColor;
@@ -141,7 +144,7 @@ namespace jsonSchemaTools
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.Write("missed ");
                     Console.ForegroundColor = currentForegroundColor;
-                    Console.Write("in ");
+                    Console.Write("in the ");
                     if (diffItem.itemNameRight.Length == 0)
                     {
                         Console.Write("right ");
@@ -160,7 +163,7 @@ namespace jsonSchemaTools
         private static void ShowAboutInfo()
         {
             Console.WriteLine("JSON schema comparator. Compares only structures of two json files.\n");
-            Console.WriteLine("Use: [exe name] [file1 path] [file2 path]");
+            Console.WriteLine("Use: jSchemaTools [file1 path] [file2 path]");
 
             return;
         }
