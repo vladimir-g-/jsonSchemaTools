@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+//using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 using System.IO;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+//using Newtonsoft.Json;
+//using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Schema;
 
 namespace jsonSchemaTools
@@ -15,15 +15,32 @@ namespace jsonSchemaTools
     {
         static void Main(string[] args)
         {
-            string sPath1 = "";
-            string sPath2 = "";
+            string Path1 = "";
+            string Path2 = "";
 
             if (args.Length > 1)
             {
-                sPath1 = args[0];
-                sPath2 = args[1];
-
-                ExecuteSchemasComparison(sPath1, sPath2);
+                if (args.Length == 2)
+                {
+                    // Check whether schema output command was pointed out
+                    if (args[0] == "-o")
+                    {
+                        // print json schema command was pointed out
+                        ExecutePrintJsonSchemaCommand(args[1]);
+                    }
+                    else
+                        ShowAboutInfo();
+                }
+                if (args.Length == 3)
+                {
+                    if (args[0] == "-c")
+                    {
+                        // compare json schemas
+                        ExecuteSchemasComparisonCommand(args[1], args[2]);
+                    }
+                    else
+                        ShowAboutInfo();
+                }
             }
             else
             {
@@ -32,7 +49,7 @@ namespace jsonSchemaTools
             }
         }
 
-        private static void ExecuteSchemasComparison(string fileNameLeft, string fileNameRight)
+        private static void ExecuteSchemasComparisonCommand(string fileNameLeft, string fileNameRight)
         {
             if (!File.Exists(fileNameLeft))
             {
@@ -97,7 +114,7 @@ namespace jsonSchemaTools
                 //Console.ReadKey();
             }
         }
-         private static void ShowCompareResults(List<CompareResultItem> resultsList)
+        private static void ShowCompareResults(List<CompareResultItem> resultsList)
         {
             ConsoleColor currentForegroundColor = Console.ForegroundColor;
 
@@ -159,11 +176,35 @@ namespace jsonSchemaTools
                 Console.WriteLine();
             }
         }
+        private static void ExecutePrintJsonSchemaCommand(string fileName)
+        {
+            JSONSchemaExtractor schemaExtractor;// = new JSONSchemaExtractor();
+            if (!File.Exists(fileName))
+            {
+                Console.WriteLine("File '{0}' not found!", fileName);
+                return;
+            }
+
+            schemaExtractor = new JSONSchemaExtractor();
+            try
+            {
+                Console.WriteLine(schemaExtractor.GetSchemaAsText(fileName));
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine("Exception during getting schema from the file: {0}", fileName);
+                Console.WriteLine(e.Message);
+            }
+        }
 
         private static void ShowAboutInfo()
         {
             Console.WriteLine("JSON schema comparator. Compares only structures of two json files.\n");
-            Console.WriteLine("Use: jSchemaTools [file1 path] [file2 path]");
+            Console.WriteLine("Use: jSchemaTools [command] [file 1] [file 2]");
+
+            Console.WriteLine("\n[command]:");
+            Console.WriteLine("\t-c : compare json schemas of two files (file 1 and file 2) and show compare results");
+            Console.WriteLine("\t-o : print file 1 json schema");
 
             return;
         }
