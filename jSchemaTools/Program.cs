@@ -15,9 +15,6 @@ namespace jsonSchemaTools
     {
         static void Main(string[] args)
         {
-            string Path1 = "";
-            string Path2 = "";
-
             if (args.Length > 1)
             {
                 if (args.Length == 2)
