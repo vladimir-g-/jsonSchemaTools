@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("get_schema")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("jSchemaTools")]
+[assembly: AssemblyDescription("Compare schemas of two json files")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("get_schema")]
-[assembly: AssemblyCopyright("Copyright ©  2016")]
+[assembly: AssemblyProduct("jSchemaTools")]
+[assembly: AssemblyCopyright("Vladimir Geraskin. Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
