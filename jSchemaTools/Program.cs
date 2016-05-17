@@ -98,6 +98,12 @@ namespace jsonSchemaTools
                 Console.WriteLine(e.Message);
                 return;
             }
+
+            Console.WriteLine("Compare the following files: \n");
+            // Write wich file is left and which is right
+            Console.WriteLine("Left file: {0}", fileNameLeft);
+            Console.WriteLine("Right file: {0}\n", fileNameRight);
+
             if (compareResults.Count == 0)
             {
                 Console.WriteLine("Files are identical.");
@@ -106,9 +112,6 @@ namespace jsonSchemaTools
             {
                 // Compare results output
                 ShowCompareResults(compareResults);
-
-                //Console.WriteLine("\nPress any key to exit ...");
-                //Console.ReadKey();
             }
         }
         private static void ShowCompareResults(List<CompareResultItem> resultsList)
@@ -175,7 +178,7 @@ namespace jsonSchemaTools
         }
         private static void ExecutePrintJsonSchemaCommand(string fileName)
         {
-            JSONSchemaExtractor schemaExtractor;// = new JSONSchemaExtractor();
+            JSONSchemaExtractor schemaExtractor;
             if (!File.Exists(fileName))
             {
                 Console.WriteLine("File '{0}' not found!", fileName);
