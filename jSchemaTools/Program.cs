@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-//using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 using System.IO;
-//using Newtonsoft.Json;
-//using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Schema;
 
 namespace jsonSchemaTools
@@ -123,14 +120,13 @@ namespace jsonSchemaTools
             {
                 if (diffItem.parentObjectName.Length > 0)
                 {
-                    //Console.Write("Parent property '{0}': ", diffItem.parentObjectName);
+                    // Write Parent property name
                     Console.Write("[{0}] ==> ", diffItem.parentObjectName);
                 }
 
                 if (diffItem.itemNameLeft == diffItem.itemNameRight)
                 {
                     // Looks like types are different
-                    //Console.Write("key ");
                     Console.ForegroundColor = ConsoleColor.Cyan;
                     Console.Write("'{0}'", diffItem.itemNameLeft);
                     Console.ForegroundColor = currentForegroundColor;
@@ -143,7 +139,6 @@ namespace jsonSchemaTools
                 else
                 {
                     // item is missed in right schema
-                   // Console.Write("key ");
                     Console.ForegroundColor = ConsoleColor.Cyan;
                         
                     if (diffItem.itemNameRight.Length == 0)
