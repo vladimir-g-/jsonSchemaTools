@@ -96,7 +96,7 @@ namespace jsonSchemaTools
                 return;
             }
 
-            Console.WriteLine("Compare the following files: \n");
+            Console.WriteLine("Comparing the following files: \n");
             // Write wich file is left and which is right
             Console.WriteLine("Left file: {0}", fileNameLeft);
             Console.WriteLine("Right file: {0}\n", fileNameRight);
@@ -115,7 +115,7 @@ namespace jsonSchemaTools
         {
             ConsoleColor currentForegroundColor = Console.ForegroundColor;
 
-            Console.WriteLine("Found the following differences:\n");
+            Console.WriteLine("The following differences have been found:\n");
             foreach (CompareResultItem diffItem in resultsList)
             {
                 if (diffItem.parentObjectName.Length > 0)
