@@ -4,3 +4,7 @@
 
 /jSchemaTools/obj/Debug
 /jSchemaTools/bin/Debug
+/.vs
+/jSchemaTools/obj/Release
+/packages/Newtonsoft.Json.11.0.2
+/packages/Newtonsoft.Json.Schema.3.0.10
