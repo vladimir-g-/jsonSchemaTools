@@ -143,9 +143,19 @@ namespace jsonSchemaTools
                         builder.Append("}");
                     }
                     else
-                    {
-                        builder.Append("{ 'type': '" + itemType.ToString().ToLower() + "' }");
-                    }
+                        if (itemType == JTokenType.Float)
+                        {
+                            builder.Append("{ 'type': '" + "number" + "' }");
+                        }
+                        else
+                            if (itemType == JTokenType.Date)
+                            {
+                                builder.Append("{ 'type': '" + "string" + "' }");
+                            }
+                            else
+                            {
+                                builder.Append("{ 'type': '" + itemType.ToString().ToLower() + "' }");
+                            }
                 ++itemCounter;
             }
 
